@@ -1,6 +1,11 @@
 from mlopsProject.components import data_ingestion
 from mlopsProject import logger
 from mlopsProject.pipeline.stage_01_data_ingestion import DataIngestionTrainingPipeline
+from mlopsProject.pipeline.stage_02_data_validation import DataValidationTrainingPipeline
+from mlopsProject.pipeline.stage_03_data_transformation import DataTransformationTrainingPipeline  
+from mlopsProject.pipeline.stage_04_model_trainer import ModelTrainerTrainingPipeline
+
+
 
 STAGE_Name = "Data Ingestion Stage"
 try:
@@ -11,7 +16,38 @@ try:
 except Exception as e:
     logger.exception(e)
     raise e
-    
+
+STAGE_Name = "Data Validation Stage"
+try:
+    logger.info(f"stage {STAGE_Name}")
+    data_validation = DataValidationTrainingPipeline()
+    data_validation.main()
+    logger.info("Completed")
+except Exception as e:
+    logger.exception(e)
+    raise e
+
+STAGE_Name = "Data Transformation Stage"
+try:
+    logger.info(f"stage {STAGE_Name}")
+    data_transformation = DataTransformationTrainingPipeline()
+    data_transformation.main()
+    logger.info("Completed")
+except Exception as e:
+    logger.exception(e)
+    raise e
+
+
+STAGE_Name = "Model Training Stage"
+try:
+    logger.info(f"stage {STAGE_Name}")
+    model_trainer = ModelTrainerTrainingPipeline()
+    model_trainer.main()
+    logger.info("Completed")
+except Exception as e:
+    logger.exception(e)
+    raise e
+
 
 
 
